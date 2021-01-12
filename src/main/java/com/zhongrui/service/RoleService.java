@@ -5,9 +5,8 @@ import com.zhongrui.entity.Role;
 import java.util.List;
 
 /**
- * @Auther: Joanne
- * @Date: 2018/11/2 15:10
- * @Description:
+ * @author Joanne
+ * @date 2018/11/2 15:10
  */
 public interface RoleService {
     List<Role> selectRoleList(Integer id);

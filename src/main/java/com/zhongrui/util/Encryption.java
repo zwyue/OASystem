@@ -3,9 +3,8 @@ package com.zhongrui.util;
 import java.security.MessageDigest;
 
 /**
- * @Auther: Joanne
- * @Date: 2018/11/2 09:42
- * @Description:
+ * @auther Joanne
+ * @date 2018/11/2 09:42
  */
 public class Encryption {
 

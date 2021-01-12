@@ -1,14 +1,12 @@
 package com.zhongrui.service;
 
 import com.zhongrui.entity.Userinfo;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 /**
- * @Auther: Joanne
- * @Date: 2018/11/2 09:36
- * @Description:
+ * @author Joanne
+ * @date  2018/11/2 09:36
  */
 public interface UserinfoService {
     

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <description>Shiro安全配置</description>
@@ -39,22 +37,22 @@
         </property>
     </bean>
     <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->
-    <!--<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
-        <!--<property name="cacheManagerConfigFile" ref="ehCacheManager"/>-->
-    <!--</bean>-->
+<!--    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+<!--        <property name="cacheManagerConfigFile" ref="ehCacheManager"/>-->
+<!--    </bean>-->
 
-    <!--<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
-        <!--<property name="configLocation" value="classpath:shiroCache.xml"/>-->
-        <!--<property name="shared" value="true"></property>-->
-    <!--</bean>-->
+<!--    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+<!--        <property name="configLocation" value="classpath:shiroCache.xml"/>-->
+<!--        <property name="shared" value="true"></property>-->
+<!--    </bean>-->
 
     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManager" ref="ehCacheManager"></property>
+        <property name="cacheManager" ref="ehCacheManager"/>
     </bean>
 
     <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-        <property name="configLocation" value="classpath:shiroCache.xml"></property>
-        <property name="shared" value="true"></property>
+        <property name="configLocation" value="classpath:shiroCache.xml"/>
+        <property name="shared" value="true"/>
     </bean>
 
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->

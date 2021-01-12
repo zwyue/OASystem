@@ -1,6 +1,5 @@
 package com.zhongrui.controller;
 
-import com.zhongrui.entity.Role;
 import com.zhongrui.entity.Userinfo;
 import com.zhongrui.service.RoleService;
 import com.zhongrui.service.UserinfoService;
@@ -8,8 +7,6 @@ import com.zhongrui.util.Encryption;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,9 +20,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @Auther: Joanne
- * @Date: 2018/11/2 09:43
- * @Description:
+ * @author : Joanne
+ * @date : 2018/11/2 09:43
  */
 @Controller
 @RequestMapping("/user")

@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 /**
- * @Auther: Joanne
- * @Date: 2018/11/2 09:39
- * @Description:
+ * @author Joanne
+ * @date 2018/11/2 09:39
  */
 @Service
 public class UserinfoServiceImpl implements UserinfoService {
