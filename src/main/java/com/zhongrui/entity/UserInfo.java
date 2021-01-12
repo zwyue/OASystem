@@ -9,15 +9,14 @@ import java.util.Date;
  * @date 1/12/2021 2:26 PM
  */
 @Data
-public class UserPermission {
-
+public class UserInfo {
     private Integer id;
 
-    private Integer operationId;
+    private String sex;
 
-    private String url;
+    private String name;
+
+    private String password;
 
     private Date createTime;
-
-    private Date updateTime;
 }

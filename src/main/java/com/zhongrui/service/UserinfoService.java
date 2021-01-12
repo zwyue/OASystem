@@ -1,6 +1,6 @@
 package com.zhongrui.service;
 
-import com.zhongrui.entity.Userinfo;
+import com.zhongrui.entity.UserInfo;
 
 import java.util.ArrayList;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
  */
 public interface UserinfoService {
     
-    int insert(Userinfo record);
+    int insert(UserInfo record);
 
-    ArrayList<Userinfo> selectSelective(Userinfo record);
+    ArrayList<UserInfo> selectSelective(UserInfo record);
 
-    Userinfo selectUserByUsername(String username);
+    UserInfo selectUserByUsername(String username);
 }

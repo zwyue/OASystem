@@ -1,23 +1,23 @@
 package com.zhongrui.dao;
 
-import com.zhongrui.entity.Userinfo;
+import com.zhongrui.entity.UserInfo;
 
 import java.util.ArrayList;
 
 public interface UserinfoMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Userinfo record);
+    int insert(UserInfo record);
 
-    int insertSelective(Userinfo record);
+    int insertSelective(UserInfo record);
 
-    Userinfo selectByPrimaryKey(Integer id);
+    UserInfo selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Userinfo record);
+    int updateByPrimaryKeySelective(UserInfo record);
 
-    int updateByPrimaryKey(Userinfo record);
+    int updateByPrimaryKey(UserInfo record);
 
-    ArrayList<Userinfo> selectSelective(Userinfo record);
+    ArrayList<UserInfo> selectSelective(UserInfo record);
 
-    Userinfo selectUserByUsername(String username);
+    UserInfo selectUserByUsername(String username);
 }

@@ -1,6 +1,6 @@
 package com.zhongrui.dao;
 
-import com.zhongrui.entity.Userinfo;
+import com.zhongrui.entity.UserInfo;
 import com.zhongrui.util.Encryption;
 import org.junit.After;
 import org.junit.Before;
@@ -32,10 +32,10 @@ public class UserinfoMapperTest {
 
     @Test
     public void selectSelective() {
-        Userinfo user = new Userinfo();
+        UserInfo user = new UserInfo();
         user.setName("zwy");
-        user.setPw(Encryption.MD5("123456"));
-        List<Userinfo> userinfos = userinfoMapper.selectSelective(user);
+        user.setPassword(Encryption.MD5("123456"));
+        List<UserInfo> userinfos = userinfoMapper.selectSelective(user);
         System.out.printf("success");
     }
 }

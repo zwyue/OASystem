@@ -1,6 +1,6 @@
 package com.zhongrui.controller;
 
-import com.zhongrui.entity.Userinfo;
+import com.zhongrui.entity.UserInfo;
 import com.zhongrui.service.RoleService;
 import com.zhongrui.service.UserinfoService;
 import com.zhongrui.util.Encryption;
@@ -58,13 +58,13 @@ public class UserController {
      * @return
      **/
     @RequestMapping(value = "register",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute Userinfo user, Model model){
-        Userinfo record = new Userinfo();
+    public String addUser(@ModelAttribute UserInfo user, Model model){
+        UserInfo record = new UserInfo();
         record.setName(user.getName());
-        List<Userinfo> list = userinfoService.selectSelective(record);
+        List<UserInfo> list = userinfoService.selectSelective(record);
         if (list.size()==0){
-            user.setCreatetime(new Date());
-            user.setPw(Encryption.MD5(user.getPw()));
+            user.setCreateTime(new Date());
+            user.setPassword(Encryption.MD5(user.getPassword()));
             if (userinfoService.insert(user)==1){
                 model.addAttribute("status",0);
             }else {
@@ -96,16 +96,16 @@ public class UserController {
      * @return
      **/
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginValidate(HttpSession session, Model model, @ModelAttribute final Userinfo user) {
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),user.getPw());
-        List<Userinfo> list = new ArrayList<Userinfo>();
-        Userinfo record  = new Userinfo();
+    public String loginValidate(HttpSession session, Model model, @ModelAttribute final UserInfo user) {
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),user.getPassword());
+        List<UserInfo> list = new ArrayList<UserInfo>();
+        UserInfo record  = new UserInfo();
         record.setName(user.getName());
         list = userinfoService.selectSelective(record);
         if (list.size() == 0) {
             model.addAttribute("status", 1);
         } else {
-            record.setPw(Encryption.MD5(user.getPw()));
+            record.setPassword(Encryption.MD5(user.getPassword()));
             list = userinfoService.selectSelective(record);
             if (list.size() == 0) {
                 model.addAttribute("status", 2);
@@ -146,7 +146,7 @@ public class UserController {
      **/
     @RequestMapping(value="/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, HttpSession session) {
-        Userinfo user = (Userinfo) session.getAttribute("userinfo");
+        UserInfo user = (UserInfo) session.getAttribute("userinfo");
         if(user != null){
             model.addAttribute("user", user);
         }

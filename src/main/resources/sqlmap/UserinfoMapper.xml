@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhongrui.dao.UserinfoMapper">
-  <resultMap id="BaseResultMap" type="com.zhongrui.entity.Userinfo">
+  <resultMap id="BaseResultMap" type="com.zhongrui.entity.UserInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="sex" jdbcType="BIT" property="sex" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -21,13 +21,13 @@
     delete from userinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhongrui.entity.Userinfo">
+  <insert id="insert" parameterType="com.zhongrui.entity.UserInfo">
     insert into userinfo (id, sex, name, pw, 
       createtime)
     values (#{id,jdbcType=INTEGER}, #{sex,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, #{pw,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zhongrui.entity.Userinfo">
+  <insert id="insertSelective" parameterType="com.zhongrui.entity.UserInfo">
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhongrui.entity.Userinfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhongrui.entity.UserInfo">
     update userinfo
     <set>
       <if test="sex != null">
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhongrui.entity.Userinfo">
+  <update id="updateByPrimaryKey" parameterType="com.zhongrui.entity.UserInfo">
     update userinfo
     set sex = #{sex,jdbcType=BIT},
       name = #{name,jdbcType=VARCHAR},
@@ -91,7 +91,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectSelective" parameterType="com.zhongrui.entity.Userinfo" resultMap="BaseResultMap">
+  <select id="selectSelective" parameterType="com.zhongrui.entity.UserInfo" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List" />
       from userinfo
