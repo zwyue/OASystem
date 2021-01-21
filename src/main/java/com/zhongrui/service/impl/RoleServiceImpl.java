@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public int insertUserRoleRe(Integer id, int insertRole) {
-        Map map = new HashMap();
+        Map<String,Object> map = new HashMap<>();
         map.put("userId",id);
         map.put("roleId",insertRole);
         return roleMapper.saveUserRoleRe(map);

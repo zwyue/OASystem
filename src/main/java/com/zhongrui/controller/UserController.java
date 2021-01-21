@@ -6,12 +6,9 @@ import com.zhongrui.service.UserinfoService;
 import com.zhongrui.util.Encryption;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -23,9 +20,10 @@ import java.util.List;
  * @author : Joanne
  * @date : 2018/11/2 09:43
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserinfoService userinfoService;
 
@@ -39,32 +37,30 @@ public class UserController {
     }
 
     /**
-     * @Author Joaane
-     * @Description  转入注册页
-     * @Date 11:47 2018/11/2
-     * @Param
-     * @return
+     * 转入注册页
+     *
+     * @author Joanne
+     * @date 11:47 2018/11/2
      **/
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String register(){
         return "register";
     }
 
     /**
-     * @Author Joaane
-     * @Description 注册
-     * @Date 11:47 2018/11/2
-     * @Param
-     * @return
+     * 注册
+     *
+     * @author Joanne
+     * @date 11:47 2018/11/2
      **/
-    @RequestMapping(value = "register",method = RequestMethod.POST)
+    @PostMapping(value = "register")
     public String addUser(@ModelAttribute UserInfo user, Model model){
         UserInfo record = new UserInfo();
         record.setName(user.getName());
         List<UserInfo> list = userinfoService.selectSelective(record);
         if (list.size()==0){
             user.setCreateTime(new Date());
-            user.setPassword(Encryption.MD5(user.getPassword()));
+            user.setPassword(Encryption.md5(user.getPassword()));
             if (userinfoService.insert(user)==1){
                 model.addAttribute("status",0);
             }else {
@@ -77,11 +73,10 @@ public class UserController {
     }
 
     /**
-     * @Author Joaane
-     * @Description 转入登陆页
-     * @Date 11:47 2018/11/2
-     * @Param
-     * @return
+     * 转入登陆页
+     *
+     * @author Joanne
+     * @date 11:47 2018/11/2
      **/
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login() {
@@ -89,11 +84,10 @@ public class UserController {
     }
 
     /**
-     * @Author Joaane
-     * @Description 登陆
-     * @Date 11:48 2018/11/2
-     * @Param
-     * @return
+     * 登陆
+     *
+     * @author Joanne
+     * @date 11:48 2018/11/2
      **/
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginValidate(HttpSession session, Model model, @ModelAttribute final UserInfo user) {
@@ -105,7 +99,7 @@ public class UserController {
         if (list.size() == 0) {
             model.addAttribute("status", 1);
         } else {
-            record.setPassword(Encryption.MD5(user.getPassword()));
+            record.setPassword(Encryption.md5(user.getPassword()));
             list = userinfoService.selectSelective(record);
             if (list.size() == 0) {
                 model.addAttribute("status", 2);
@@ -138,11 +132,10 @@ public class UserController {
     }
 
     /**
-     * @Author Joaane
-     * @Description 用户信息
-     * @Date 11:48 2018/11/2
-     * @Param
-     * @return
+     * 用户信息
+     *
+     * @author Joanne
+     * @date 11:48 2018/11/2
      **/
     @RequestMapping(value="/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, HttpSession session) {
@@ -155,11 +148,10 @@ public class UserController {
     }
 
     /**
-     * @Author Joaane
-     * @Description 登出
-     * @Date 11:48 2018/11/2
-     * @Param
-     * @return
+     * 登出
+     *
+     * @author Joanne
+     * @date 11:48 2018/11/2
      **/
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {

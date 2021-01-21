@@ -3,14 +3,19 @@ package com.zhongrui.util;
 import java.security.MessageDigest;
 
 /**
- * @auther Joanne
+ * @author Joanne
  * @date 2018/11/2 09:42
  */
 public class Encryption {
 
-    // MD5加码。32位
-    public static String MD5(String inStr) {
-        MessageDigest md5 = null;
+    /**
+     * MD5加码。32位
+     *
+     * @author zwy
+     * @date 1/13/2021 9:38 AM
+     */
+    public static String md5(String inStr) {
+        MessageDigest md5 ;
         try {
             md5 = MessageDigest.getInstance("MD5");
         } catch (Exception e) {
@@ -21,32 +26,38 @@ public class Encryption {
         char[] charArray = inStr.toCharArray();
         byte[] byteArray = new byte[charArray.length];
 
-        for (int i = 0; i < charArray.length; i++)
+        for (int i = 0; i < charArray.length; i++) {
             byteArray[i] = (byte) charArray[i];
+        }
 
         byte[] md5Bytes = md5.digest(byteArray);
 
-        StringBuffer hexValue = new StringBuffer();
+        StringBuilder hexValue = new StringBuilder();
 
-        for (int i = 0; i < md5Bytes.length; i++) {
-            int val = ((int) md5Bytes[i]) & 0xff;
-            if (val < 16)
+        for (byte md5Byte : md5Bytes) {
+            int val = ((int) md5Byte) & 0xff;
+            if (val < 16) {
                 hexValue.append("0");
+            }
             hexValue.append(Integer.toHexString(val));
         }
 
         return hexValue.toString();
     }
 
-    // 可逆的加密算法
-    public static String KL(String inStr) {
+    /**
+     * 可逆的加密算法
+     *
+     * @author zwy
+     * @date 1/13/2021 9:39 AM
+     */
+    public static String kl(String inStr) {
         // String s = new String(inStr);
         char[] a = inStr.toCharArray();
         for (int i = 0; i < a.length; i++) {
             a[i] = (char) (a[i] ^ 't');
         }
-        String s = new String(a);
-        return s;
+        return new String(a);
     }
 
     // 加密后解密
@@ -55,35 +66,20 @@ public class Encryption {
         for (int i = 0; i < a.length; i++) {
             a[i] = (char) (a[i] ^ 't');
         }
-        String k = new String(a);
-        return k;
+        return new String(a);
     }
-
-    /*// 测试主函数
-    public static void main(String args[]) {
-        String s = new String("123123");
-        System.out.println("原始：" + s);
-        System.out.println("MD5后：" + MD5(s));
-        System.out.println("MD5后再加密：" + KL(MD5(s)));
-        System.out.println("解密为MD5后的：" + JM(KL(MD5(s))));
-    }*/
 
     /**
      * 创建指定数量的随机字符串
-     *
-     * @param numberFlag
-     *            是否是数字
-     * @param length
-     * @return
      */
-    public static String generateQC(boolean numberFlag, int length) {
-        String retStr = "";
+    public static String generate(boolean numberFlag, int length) {
+        StringBuilder retStr ;
         String strTable = numberFlag ? "1234567890"
                 : "1234567890abcdefghijkmnpqrstuvwxyz";
         int len = strTable.length();
         boolean bDone = true;
         do {
-            retStr = "";
+            retStr = new StringBuilder();
             int count = 0;
             for (int i = 0; i < length; i++) {
                 double dblR = Math.random() * len;
@@ -92,13 +88,13 @@ public class Encryption {
                 if (('0' <= c) && (c <= '9')) {
                     count++;
                 }
-                retStr += strTable.charAt(intR);
+                retStr.append(strTable.charAt(intR));
             }
             if (count >= 2) {
                 bDone = false;
             }
         } while (bDone);
 
-        return retStr;
+        return retStr.toString();
     }
 }

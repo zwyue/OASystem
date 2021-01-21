@@ -16,14 +16,14 @@ public class UserinfoMapperTest {
     private ApplicationContext applicationContext;
 
     @Autowired
-    private UserinfoMapper userinfoMapper;
+    private UserInfoMapper userInfoMapper;
 
     @Before
     public void setUp() throws Exception {
         // 加载spring配置文件
         applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");
         // 导入需要测试的
-        userinfoMapper = applicationContext.getBean(UserinfoMapper.class);
+        userInfoMapper = applicationContext.getBean(UserInfoMapper.class);
     }
 
     @After
@@ -34,8 +34,8 @@ public class UserinfoMapperTest {
     public void selectSelective() {
         UserInfo user = new UserInfo();
         user.setName("zwy");
-        user.setPassword(Encryption.MD5("123456"));
-        List<UserInfo> userinfos = userinfoMapper.selectSelective(user);
-        System.out.printf("success");
+        user.setPassword(Encryption.md5("123456"));
+//        List<UserInfo> userinfos = userInfoMapper.selectSelective(user);
+//        System.out.printf("success");
     }
 }

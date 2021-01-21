@@ -1,6 +1,6 @@
 package com.zhongrui.service.impl;
 
-import com.zhongrui.dao.UserinfoMapper;
+import com.zhongrui.dao.UserInfoMapper;
 import com.zhongrui.entity.UserInfo;
 import com.zhongrui.service.UserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +16,25 @@ import java.util.ArrayList;
 public class UserinfoServiceImpl implements UserinfoService {
 
     @Autowired
-    private UserinfoMapper userinfoMapper ;
+    private UserInfoMapper userInfoMapper ;
 
     @Override
     public int insert(UserInfo record) {
-        return userinfoMapper.insert(record);
+//        return userInfoMapper.insert(record);
+        return 0 ;
     }
 
     @Override
     public ArrayList<UserInfo> selectSelective(UserInfo record) {
-        return userinfoMapper.selectSelective(record);
+//        return userinfoMapper.selectSelective(record);
 //        ArrayList arrayList = userinfoMapper.selectSelective(record);
 //        return arrayList ;
+        return null ;
     }
 
     @Override
     public UserInfo selectUserByUsername(String username) {
-        return userinfoMapper.selectUserByUsername(username);
+//        return userinfoMapper.selectUserByUsername(username);
+        return null ;
     }
 }

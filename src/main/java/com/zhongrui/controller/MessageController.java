@@ -1,17 +1,13 @@
 package com.zhongrui.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Joanne
  * @date 2018/11/1 17:18
  */
-@Controller
+@RestController
 @RequestMapping("/message")
 public class MessageController {
 
@@ -26,20 +22,16 @@ public class MessageController {
         return "detail" ;
     }
 
-    @RequestMapping(value = "/report1",method = RequestMethod.GET)
-    public String reportGet(@RequestParam("begin")String begin
-                            ,@RequestParam("end")String end
-                            , Model model){
+    @GetMapping("/report1")
+    public String reportGet(@RequestParam("begin")String begin ,@RequestParam("end")String end , Model model){
         model.addAttribute("begin",begin);
         model.addAttribute("end",end);
         model.addAttribute("formType","GET");
         return "report" ;
     }
 
-    @RequestMapping(value = "/report2",method = RequestMethod.POST)
-    public String reportPost(@RequestParam("begin")String begin
-                            ,@RequestParam("end")String end
-                            , Model model){
+    @PostMapping("/report2")
+    public String reportPost(@RequestParam("begin")String begin ,@RequestParam("end")String end , Model model){
         model.addAttribute("begin",begin);
         model.addAttribute("end",end);
         model.addAttribute("formType","POST");
